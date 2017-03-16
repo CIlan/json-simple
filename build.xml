@@ -24,7 +24,7 @@
 				source="1.2"/>
 	</target>
 	
-	<target name="jar" depends="compile">
+	<target name="jar" depends="compile,junit">
 		<jar	destfile="${targetDir}/json-simple-${current-version}.jar"
 				basedir="${javaTargetDir}"
 				includes="**/*.class">
@@ -37,5 +37,14 @@
 				<attribute name="Export-Package" value="org.json.simple, org.json.simple.parser"/>
 			</manifest>
 		</jar>
+	</target>
+	
+	<target name="junit">
+		<junit>
+			<classpath refid="runtime.path"/>
+			<formatter type="plain"/>
+			<test name="org.json.simple.Test"/>
+			<test name="org.json.simple.parser.YylexTest"/>
+		</junit>
 	</target>
 </project>
